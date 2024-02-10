@@ -1,7 +1,12 @@
+//this file is not connected to webap, no server and express. This is a file i will run on its own, anytime i want new data on DB. This is common habit during development.
+
+//require modle and mongoose
 const mongoose = require("mongoose");
 const Product = require("./models/product");
 const path = require("path");
 
+
+//connect to mongoose
 mongoose
   .connect("mongodb://127.0.0.1:27017/farmStand")
   .then(() => {
@@ -43,6 +48,7 @@ const seedProducts = [
   }
 ]
 
+//mongoose validates all data before inserting to product, if one fail, nothing will be inserted.
 Product.insertMany(seedProducts) //passing array to insertMany() method returns a query obj thenable object, so we can chain then
   .then(res=>console.log(res))
   .catch(e=>console.log(e))
