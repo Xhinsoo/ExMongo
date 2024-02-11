@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>index</title>
+    <title>Detail</title>
   </head>
   <body>
-    <h1>All products</h1>
+    <h1><%=findProduct.name%>:<%=findProduct._id %></h1>
     <ul>
-      <%for(let p of products){%>
-      <li><%=p.name %> <a href="http://localhost:3000/products/<%=p._id %>">Details</a></li>
-      <%}%>
+      <li>Price: $<%=findProduct.price %></li>
+      <li>category: <%=findProduct.category %></li>
     </ul>
   </body>
 </html>
