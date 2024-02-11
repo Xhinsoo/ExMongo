@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
+
+app.use(express.urlencoded({ extended: true })); //any form data that comes in from a form or post req, parse it
+app.use(methodOverride("_method"));
 
 const Product = require("./models/product");
 
@@ -22,12 +26,31 @@ app.get("/products", async (req, res) => {
   const products = await Product.find({}); //finding all items takes time so we make it async handler for this route and await it.
   res.render("products/index", { products });
 });
-
+//showing details of one product
 app.get("/products/:id", async (req, res) => {
   const products = await Product.find({});
   const { id } = req.params;
   const findProduct = products.find((p) => p.id === id);
   res.render("products/details", { findProduct });
+});
+
+//render edit page and submit patch req
+app.get("/products/:id/edit", async (req, res) => {
+  const products = await Product.find({});
+  const { id } = req.params;
+  const findProduct = products.find((p) => p.id === id);
+  res.render("products/edit", { findProduct });
+});
+
+//editing one comment
+app.patch("/products/:id", async (req, res) => {
+  const products = await Product.find({});
+  const { id } = req.params;
+  let findProduct = products.find((p) => p.id === id);
+  const newName = req.body.name;
+  findProduct.name = newName
+  console.log(findProduct)
+  res.render("products/details", {findProduct})
 });
 
 app.listen("3000", (req, res) => {
