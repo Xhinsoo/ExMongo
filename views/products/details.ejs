@@ -6,11 +6,15 @@
     <title>Detail</title>
   </head>
   <body>
-    <h1><%=findProduct.name%>:<%=findProduct._id %></h1>
-    <ul>
-      <li>Price: $<%=findProduct.price %></li>
-      <li>category: <%=findProduct.category %></li>
+    <form action="http://localhost:3000/products/<%=product._id %>?_method=DELETE", method ="POST">
+      <h1><%=product.name%>:<%=product._id %></h1>
+      <ul>
+        <li>Price: $<%=product.price %></li>
+        <li>category: <%=product.category %></li>
+        <button>Delete</button>
+    </form>
     </ul>
-    <a href="http://localhost:3000/products/<%=findProduct._id %>/edit">Edit</a>
+    <a href="http://localhost:3000/products/<%=product._id %>/edit">Edit</a>
+    <a href="http://localhost:3000/products">Index</a>
   </body>
 </html>

@@ -26,31 +26,40 @@ app.get("/products", async (req, res) => {
   const products = await Product.find({}); //finding all items takes time so we make it async handler for this route and await it.
   res.render("products/index", { products });
 });
-//showing details of one product
+//showing details of one comment
 app.get("/products/:id", async (req, res) => {
-  const products = await Product.find({});
   const { id } = req.params;
-  const findProduct = products.find((p) => p.id === id);
-  res.render("products/details", { findProduct });
+  const product = await Product.findById(id);
+  res.render("products/details", { product });
 });
 
 //render edit page and submit patch req
 app.get("/products/:id/edit", async (req, res) => {
-  const products = await Product.find({});
   const { id } = req.params;
-  const findProduct = products.find((p) => p.id === id);
-  res.render("products/edit", { findProduct });
+  const product = await Product.findById(id); //query DB and find product
+  res.render("products/edit", { product });
 });
 
-//editing one comment
-app.patch("/products/:id", async (req, res) => {
-  const products = await Product.find({});
+//editing, replacing entire object. Therefore, put request instead of patch.
+app.put("/products/:id", async (req, res) => {
   const { id } = req.params;
-  let findProduct = products.find((p) => p.id === id);
-  const newName = req.body.name;
-  findProduct.name = newName
-  console.log(findProduct)
-  res.render("products/details", {findProduct})
+  //by default, findByIdAndUpdate will ignore validation, so need to set it to true as 3rd arguments
+  //by default, it gives us old result, so need to set "new:true" to get old result
+  const product = await Product.findByIdAndUpdate(id, req.body, {
+    //passing entire object with req.body
+    runValidators: true,
+    new: true,
+  });
+
+  res.redirect(`/products/${product._id}`);
+});
+
+app.delete("/products/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id)
+  // console.log(req.body)
+  const product = await Product.findByIdAndDelete(id, req.body);
+  res.redirect("/products/");
 });
 
 app.listen("3000", (req, res) => {

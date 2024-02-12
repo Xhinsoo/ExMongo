@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit</title>
-</head>
-<body>
-    <form method="POST" action="/products/<%=findProduct._id%>?_method=PATCH">
-        <textarea name="name" id="" cols="30" rows="10">
-            <%=findProduct.name  %>
-        </textarea> <br>
-        <button> submit</button>
+  </head>
+  <body>
+    <form
+      action="http://localhost:3000/products/<%=product._id%>?_method=PUT"
+      method="POST"
+    >
+      <textarea name="name" id="" cols="30" rows="10">
+            <%=product.name  %>
+        </textarea
+      >
+      <br />
+      <button>submit</button>
     </form>
-</body>
+  </body>
 </html>
