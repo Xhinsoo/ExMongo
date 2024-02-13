@@ -27,8 +27,15 @@ app.get("/products", async (req, res) => {
   res.render("products/index", { products });
 });
 
+//creating new form for creating new product
 app.get("/products/new", (req, res) => {
   res.render("products/new");
+});
+
+app.post("/products", async (req, res) => {
+  const newProduct = new Product(req.body) //creating new document
+  await newProduct.save() //saving to MongoDB
+  res.redirect("products");
 });
 
 //showing details of one comment
@@ -38,13 +45,13 @@ app.get("/products/:id", async (req, res) => {
   res.render("products/details", { product });
 });
 
-
 //render edit page and submit patch req
 app.get("/products/:id/edit", async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id); //query DB and find product
   res.render("products/edit", { product });
 });
+
 
 //editing, replacing entire object. Therefore, put request instead of patch.
 app.put("/products/:id", async (req, res) => {
@@ -56,7 +63,7 @@ app.put("/products/:id", async (req, res) => {
     runValidators: true,
     new: true,
   });
-
+  
   res.redirect(`/products/${product._id}`);
 });
 
