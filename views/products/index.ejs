@@ -9,8 +9,12 @@
     <h1>All products</h1>
     <ul>
       <%for(let p of products){%>
-      <li><%=p.name %> <a href="http://localhost:3000/products/<%=p._id %>">Details</a></li>
+      <li>
+        <%=p.name %>
+        <a href="/products/<%=p._id %>">Details</a>
+      </li>
       <%}%>
     </ul>
+    <a href="/products/new">Add product</a>
   </body>
 </html>

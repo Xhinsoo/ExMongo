@@ -6,15 +6,18 @@
     <title>Detail</title>
   </head>
   <body>
-    <form action="http://localhost:3000/products/<%=product._id %>?_method=DELETE", method ="POST">
-      <h1><%=product.name%>:<%=product._id %></h1>
-      <ul>
-        <li>Price: $<%=product.price %></li>
-        <li>category: <%=product.category %></li>
-        <button>Delete</button>
-    </form>
+    <h1><%=product.name%>:<%=product._id %></h1>
+    <ul>
+      <li>Price: $<%=product.price %></li>
+      <li>category: <%=product.category %></li>
     </ul>
     <a href="http://localhost:3000/products/<%=product._id %>/edit">Edit</a>
     <a href="http://localhost:3000/products">Index</a>
+    <form
+      action="http://localhost:3000/products/<%=product._id %>?_method=DELETE"
+      method="POST"
+    >
+      <button>Delete</button>
+    </form>
   </body>
 </html>

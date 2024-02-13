@@ -26,12 +26,18 @@ app.get("/products", async (req, res) => {
   const products = await Product.find({}); //finding all items takes time so we make it async handler for this route and await it.
   res.render("products/index", { products });
 });
+
+app.get("/products/new", (req, res) => {
+  res.render("products/new");
+});
+
 //showing details of one comment
 app.get("/products/:id", async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id);
   res.render("products/details", { product });
 });
+
 
 //render edit page and submit patch req
 app.get("/products/:id/edit", async (req, res) => {
@@ -56,7 +62,7 @@ app.put("/products/:id", async (req, res) => {
 
 app.delete("/products/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(id)
+  console.log(id);
   // console.log(req.body)
   const product = await Product.findByIdAndDelete(id, req.body);
   res.redirect("/products/");
