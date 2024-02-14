@@ -5,7 +5,6 @@ const path = require("path");
 
 //require module and mongoose
 
-
 //connect to mongoose
 mongoose
   .connect("mongodb://127.0.0.1:27017/farmStand")

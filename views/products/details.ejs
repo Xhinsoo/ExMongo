@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detail</title>
-  </head>
-  <body>
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/nav.ejs') %>
     <h1><%=product.name%>:<%=product._id %></h1>
     <ul>
       <li>Price: $<%=product.price %></li>
-      <li>category: <%=product.category %></li>
+      <li>
+        category:
+        <a href="/products?category=<%=product.category%>"> <%= product.category %></a>
+      </li>
     </ul>
     <a href="http://localhost:3000/products/<%=product._id %>/edit">Edit</a>
     <a href="http://localhost:3000/products">Index</a>
@@ -19,5 +16,5 @@
     >
       <button>Delete</button>
     </form>
-  </body>
-</html>
+    <%- include('../partials/foot.ejs') %>
+   

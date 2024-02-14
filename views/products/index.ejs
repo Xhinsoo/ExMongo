@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>index</title>
-  </head>
-  <body>
-    <h1>All product</h1>
-    <ul>
-      <%for(let p of products){%>
-      <li>
-        <%=p.name %>
-        <a href="/products/<%=p._id %>">Details</a>
-      </li>
-      <%}%>
-    </ul>
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+
+<div class="container-md">
+  <h2>All product</h2>
+  <ul>
+    <%for(let p of products){%>
+    <li>
+      <%=p.name %>
+      <a href="/products/<%=p._id %>">Details</a>
+    </li>
+    <%}%>
+  </ul>
+  <button class="btn btn-outline-success" type="submit">
     <a href="/products/new">Add product</a>
-  </body>
-</html>
+  </button>
+</div>
+<%- include('../partials/foot.ejs') %>
+

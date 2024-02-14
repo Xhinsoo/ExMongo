@@ -4,8 +4,12 @@ const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 
+app.use(express.static(path.join(__dirname, "public"))); //serving static files
+
 app.use(express.urlencoded({ extended: true })); //any form data that comes in from a form or post req, parse it
 app.use(methodOverride("_method"));
+//taking absolute path to the index.js file and adding public
+app.use(express.static(path.join(__dirname, "public")));
 
 const Product = require("./models/product");
 
@@ -23,8 +27,14 @@ app.set("view engine", "ejs");
 
 //async cb() for a route, where we await mongoose operations i.e product.Remove , product.find() and waiting for something to come back from mongoose we will do it all the time.
 app.get("/products", async (req, res) => {
-  const products = await Product.find({}); //finding all items takes time so we make it async handler for this route and await it.
-  res.render("products/index", { products });
+  const { category } = req.query;
+  if (category) {
+    const products = await Product.find({ category }); //finding all items takes time so we make it async handler for this route and await it.
+    res.render("products/index", { products });
+  } else {
+    const products = await Product.find({}); //finding all items takes time so we make it async handler for this route and await it.
+    res.render("products/index", { products });
+  }
 });
 
 //creating new form for creating new product
@@ -33,8 +43,8 @@ app.get("/products/new", (req, res) => {
 });
 
 app.post("/products", async (req, res) => {
-  const newProduct = new Product(req.body) //creating new document
-  await newProduct.save() //saving to MongoDB
+  const newProduct = new Product(req.body); //creating new document
+  await newProduct.save(); //saving to MongoDB
   res.redirect("products");
 });
 
@@ -52,7 +62,6 @@ app.get("/products/:id/edit", async (req, res) => {
   res.render("products/edit", { product });
 });
 
-
 //editing, replacing entire object. Therefore, put request instead of patch.
 app.put("/products/:id", async (req, res) => {
   const { id } = req.params;
@@ -63,7 +72,7 @@ app.put("/products/:id", async (req, res) => {
     runValidators: true,
     new: true,
   });
-  
+
   res.redirect(`/products/${product._id}`);
 });
 
