@@ -8,15 +8,15 @@
     <div class="card-body">
       <ul>
         <%=p.name %>
-        <a href="/products/<%=p._id %>">Details</a>
       </ul>
+      <a href="/products/<%=p._id %>" class="btn btn-primary">Details</a>
     </div>
   </div>
   <%}%>
 
-  <button class="btn btn-outline-success" type="submit">
-    <a href="/products/new">Add product</a>
-  </button>
+  <form action="/products/new" style="text-align: center">
+    <button class="btn btn-outline-success" type="submit">Add product</button>
+  </form>
 </div>
 
 <%- include('../partials/foot.ejs') %>

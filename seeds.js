@@ -34,6 +34,11 @@ const seedProducts = [
     price: 3.99,
     category: "vegetable",
   },
+  {
+    name: "Carrot",
+    price: 0.99,
+    category: "vegetable",
+  },
 ];
 
 //mongoose validates all data before inserting to product, if one fail, nothing will be inserted.

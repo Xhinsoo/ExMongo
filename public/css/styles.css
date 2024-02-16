@@ -4,9 +4,10 @@ ul li {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
-h2 {
+h2,h4 {
   text-align: center;
 }
 
@@ -14,4 +15,35 @@ h2 {
   width: 50vw;
   display: flex;
   flex-direction: column;
+}
+body {
+  background-color: rgb(142, 193, 133);
+}
+
+.card {
+  border: 2px solid black;
+}
+
+.card-body {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-body p {
+  text-align: center;
+}
+
+.navbar {
+  background-color: rgb(72, 215, 86);
+}
+
+form {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.btn {
+  color: black;
+  border: 1px solid black;
 }
