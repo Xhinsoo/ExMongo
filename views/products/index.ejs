@@ -5,7 +5,16 @@
 
   <%for(let p of products){%>
   <div class="card">
-    <div class="card-body">
+    <div
+      class="card-body"
+      style="
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      "
+    >
       <ul>
         <%=p.name %>
       </ul>

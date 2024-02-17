@@ -1,14 +1,16 @@
-<%- include('../partials/head.ejs') %>
-<%- include('../partials/nav.ejs') %>
-    <form
-      action="http://localhost:3000/products/<%=product._id%>?_method=PUT"
-      method="POST"
-    >
-      <textarea name="name" id="" cols="30" rows="10">
-            <%=product.name  %>
-        </textarea
-      >
-      <br />
-      <button>submit</button>
-    </form>
-    <%- include('../partials/foot.ejs') %>
+<%- include('../partials/head.ejs') %> <%- include('../partials/nav.ejs') %>
+<div class="container-md">
+  <form
+    action="http://localhost:3000/products/<%=product._id%>?_method=PUT"
+    method="POST"
+  >
+    <textarea name="name" id="" cols="30" rows="5">
+      Product name: <%=product.name  %>
+      Product price:$ <%=product.price  %>
+      Product category:$ <%=product.category  %>
+    </textarea>
+    <br />
+    <button>submit</button>
+  </form>
+</div>
+<%- include('../partials/foot.ejs') %>

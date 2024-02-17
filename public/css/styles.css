@@ -1,5 +1,7 @@
-ul li {
+ul {
   list-style: none;
+  display: inline-block;
+  width: auto;
 }
 
 a {
@@ -7,14 +9,16 @@ a {
   color: black;
 }
 
-h2,h4 {
+h2,
+h4 {
   text-align: center;
 }
 
 .container-md {
-  width: 50vw;
+  width: 50%;
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
 body {
   background-color: rgb(142, 193, 133);
@@ -32,10 +36,6 @@ body {
 
 .card-body p {
   text-align: center;
-}
-
-.navbar {
-  background-color: rgb(72, 215, 86);
 }
 
 form {

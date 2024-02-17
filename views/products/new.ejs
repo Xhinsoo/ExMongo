@@ -1,17 +1,42 @@
-<%- include('../partials/head.ejs') %>
-<%- include('../partials/nav.ejs') %>
-    <h1>Add new product</h1>
-    <form action="/products" method="post">
-      <input name="name" type="text" placeholder="type name" />
-      <input name="price" type="float" placeholder="type price" />
+<%- include('../partials/head.ejs') %> <%- include('../partials/nav.ejs') %>
+
+<div class="container-md">
+  <form
+    action="/products"
+    method="post"
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    "
+  >
+    <div class="mb-3">
+      <label for="exampleInputProduct" class="form-label"
+        >Add a new product</label
+      >
+      <input name="name" type="text" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPrice" class="form-label"> Add price</label>
+      <input name="price" type="float" class="form-control" />
+    </div>
+    <div class="mb-3 form-check">
+      <label
+        for="exampleInputCategory"
+        class="form-label"
+        style="display: block"
+      >
+        Add category</label
+      >
       <select name="category">
-        Choose category
         <option value="fruit">fruit</option>
         <option value="vegetable">vegetable</option>
         <option value="dairy">dairy</option>
         <option value="meat">meat</option>
       </select>
-      <button>Submit</button>
-    </form>
-    <%- include('../partials/foot.ejs') %>
-  
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<%- include('../partials/foot.ejs') %>
