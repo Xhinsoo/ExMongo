@@ -4,11 +4,30 @@
     action="http://localhost:3000/products/<%=product._id%>?_method=PUT"
     method="POST"
   >
-    <textarea name="name" id="" cols="30" rows="5">
-      Product name: <%=product.name  %>
-      Product price:$ <%=product.price  %>
-      Product category:$ <%=product.category  %>
-    </textarea>
+
+
+  <textarea name="name" id="" cols="30" rows="5">
+      <div class="card">
+        <div class="card-header">
+          <h2>
+            <%=product.name%>
+           <h4>
+             Id: <%=product._id %>
+           </h4>
+          </h3>
+        </div>
+        <div class="card-body" style="display: flex; flex-direction: column;align-items: center;">
+          <p class="card-text" ><ul>
+            <li>Price: $<%=product.price %></li>
+            <li>
+              Category:
+              <a href="/products?category=<%=product.category%>"> <%= product.category %></a>
+            </li>
+          </ul></p>
+          <div>
+
+    </textarea
+    >
     <br />
     <button>submit</button>
   </form>
