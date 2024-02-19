@@ -32,11 +32,19 @@
       >
         Add category</label
       >
-      <select name="category">
+
+      <!-- <select name="category">
         <option value="fruit" <%=product.category === "fruit" ? "selected": "" %>>fruit</option>
         <option value="vegetable" <%=product.category === "vegetable" ? "selected": "" %>>vegetable</option>
         <option value="dairy" <%=product.category === "dairy" ? "selected": "" %>>dairy</option>
         <option value="meat" <%=product.category === "meat" ? "selected": "" %>>meat</option>
+      </select> -->
+
+      <!-- made array and passed it to select, ternary operator to preselect -->
+      <select name="category">
+        <% for(let c of category ) {%>
+        <option value="c"<%= product.category===c? "selected":""%> ><%=c%></option>
+        <% } %>
       </select>
     </div>
 

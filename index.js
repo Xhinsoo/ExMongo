@@ -25,6 +25,10 @@ mongoose
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+
+const category = ["fruit", "vegetable", "dairy", "meat"]
+
+
 //async cb() for a route, where we await mongoose operations i.e product.Remove , product.find() and waiting for something to come back from mongoose we will do it all the time.
 app.get("/products", async (req, res) => {
   const { category } = req.query;
@@ -59,7 +63,7 @@ app.get("/products/:id", async (req, res) => {
 app.get("/products/:id/edit", async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id); //query DB and find product
-  res.render("products/edit", { product });
+  res.render("products/edit", { product , category});
 });
 
 //editing, replacing entire object. Therefore, put request instead of patch.
