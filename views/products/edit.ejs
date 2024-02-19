@@ -4,16 +4,44 @@
     action="http://localhost:3000/products/<%=product._id%>?_method=PUT"
     method="POST"
   >
+    <div class="mb-3">
+      <label for="exampleInputProduct" class="form-label"
+        >Add a new product</label
+      >
+      <input
+        name="name"
+        type="text"
+        class="form-control"
+        value=" <%=product.name%>"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPrice" class="form-label"> Add price</label>
+      <input
+        name="price"
+        type="float"
+        class="form-control"
+        value="<%=product.price%>"
+      />
+    </div>
+    <div class="mb-3 form-check">
+      <label
+        for="exampleInputCategory"
+        class="form-label"
+        style="display: block"
+      >
+        Add category</label
+      >
+      <select name="category">
+        <option value="fruit" <%=product.category === "fruit" ? "selected": "" %>>fruit</option>
+        <option value="vegetable" <%=product.category === "vegetable" ? "selected": "" %>>vegetable</option>
+        <option value="dairy" <%=product.category === "dairy" ? "selected": "" %>>dairy</option>
+        <option value="meat" <%=product.category === "meat" ? "selected": "" %>>meat</option>
+      </select>
+    </div>
 
-
-
-            <%=product.name%>
-     
-
-    </textarea
-    >
-    <br />
     <button>submit</button>
   </form>
 </div>
+
 <%- include('../partials/foot.ejs') %>

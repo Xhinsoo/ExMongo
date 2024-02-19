@@ -65,20 +65,26 @@ app.get("/products/:id/edit", async (req, res) => {
 //editing, replacing entire object. Therefore, put request instead of patch.
 app.put("/products/:id", async (req, res) => {
   const { id } = req.params;
-  //by default, findByIdAndUpdate will ignore validation, so need to set it to true as 3rd arguments
-  //by default, it gives us old result, so need to set "new:true" to get old result
-  const product = await Product.findByIdAndUpdate(id, req.body, {
-    //passing entire object with req.body
-    runValidators: true,
-    new: true,
-  });
+  const { price } = req.body;
+  if (!price) {
+    res.send("enter price");
+  } else {
+    console.log(price);
+    //by default, findByIdAndUpdate will ignore validation, so need to set it to true as 3rd arguments
+    //by default, it gives us old result, so need to set "new:true" to get old result
+    const product = await Product.findByIdAndUpdate(id, req.body, {
+      //passing entire object with req.body
+      runValidators: true,
+      new: true,
+    });
+    res.redirect(`/products/${product._id}`);
+  }
 
-  res.redirect(`/products/${product._id}`);
 });
 
 app.delete("/products/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  console.log(req.params);
   // console.log(req.body)
   const product = await Product.findByIdAndDelete(id, req.body);
   res.redirect("/products/");
